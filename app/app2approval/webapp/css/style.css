@@ -1,0 +1,42 @@
+#app2approval\:\:reimbursementheaderObjectPage--fe\:\:FooterBar\:\:CustomAction\:\:Approve-inner{
+    background-color: rgb(36, 88, 6);
+    filter: drop-shadow(2px 4px 6px rgb(43, 42, 42));
+    color: white;
+}
+
+#app2approval\:\:reimbursementheaderObjectPage--fe\:\:FooterBar\:\:CustomAction\:\:Approve-inner:hover {
+    transform: translateY(2px); /* Move the button down slightly on hover for pressed effect */
+    background-color: aquamarine;
+}
+
+#app2approval\:\:reimbursementheaderObjectPage--fe\:\:FooterBar\:\:CustomAction\:\:Reject-inner{
+        background-color: rgb(156, 53, 37);
+        filter: drop-shadow(2px 4px 6px rgb(43, 42, 42));
+        color: white;
+
+
+}
+ #app2approval\:\:reimbursementheaderObjectPage--fe\:\:FooterBar\:\:CustomAction\:\:Reject-inner:hover{
+    transform: translateY(2px); /* Move the button down slightly on hover for pressed effect */
+    background-color: aquamarine; 
+} 
+
+#app2approval\:\:reimbursementheaderObjectPage--fe\:\:table\:\:head_item1\:\:LineItem\:\:ReimbursementDetails-innerTable-listUl{
+    overflow: scroll !important;   
+}
+
+
+
+
+
+
+
+
+ #app2approval\:\:reimbursementheaderObjectPage--fe\:\:table\:\:head_item1\:\:LineItem\:\:ReimbursementDetails-innerTable-tblHeader{
+    background-color: rgb(93, 91, 91);
+ } 
+
+#app2approval\:\:reimbursementheaderObjectPage--fe\:\:table\:\:head_item1\:\:LineItem\:\:ReimbursementDetails-innerTable-tblHeadHighlight{
+    background-color: aqua;
+}
+

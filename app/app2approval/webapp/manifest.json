@@ -1,7 +1,7 @@
 {
   "_version": "1.59.0",
   "sap.app": {
-    "id": "app2",
+    "id": "app2approval",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -13,11 +13,11 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
       "version": "1.13.0",
-      "toolsId": "f96c525c-b9a7-4d2f-a5e1-7285341813b8"
+      "toolsId": "1f77273f-3884-4bd0-9285-3694a6359cef"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/my/",
+        "uri": "/odata/v4/service2/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -63,7 +63,8 @@
         "sap.m": {},
         "sap.ui.core": {},
         "sap.ushell": {},
-        "sap.fe.templates": {}
+        "sap.fe.templates": {},
+        "sap.suite.ui.commons": {}
       }
     },
     "contentDensities": {
@@ -74,7 +75,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "app2.i18n.i18n"
+          "bundleName": "app2approval.i18n.i18n"
         }
       },
       "": {
@@ -93,10 +94,13 @@
       }
     },
     "resources": {
-      "css": []
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
     },
     "routing": {
-      "config": {},
       "routes": [
         {
           "pattern": ":?query:",
@@ -124,7 +128,8 @@
                     "route": "reimbursementheaderObjectPage"
                   }
                 }
-              }
+              },
+              "initialLoad": "Enabled"
             }
           }
         },
@@ -135,7 +140,60 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/reimbursementheader"
+              "contextPath": "/reimbursementheader",
+              "content": {
+                "body": {
+                  "sections": {
+                    "Attachment": {
+                      "template": "app2approval.ext.fragment.Attachment",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "ReimbursementDetails"
+                      },
+                      "title": "Attachment",
+                      "type": "XMLFragment"
+                    },
+                    "Comments": {
+                      "template": "app2approval.ext.fragment.Comments",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Attachment"
+                      },
+                      "title": "Comments",
+                      "type": "XMLFragment"
+                    },
+                    "Workflow": {
+                      "template": "app2approval.ext.fragment.Workflow",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Attachment"
+                      },
+                      "title": "Workflow History",
+                      "type": "XMLFragment"
+                    }
+                  }
+                },
+                "footer": {
+                  "actions": {
+                    "Approve": {
+                      "press": "app2approval.ext.controller.Approve.ApproveM",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Approve"
+                    },
+                    "Reject": {
+                      "press": "app2approval.ext.controller.Reject.Reject",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Reject",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Approve"
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

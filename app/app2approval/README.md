@@ -1,15 +1,15 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Mon Mar 18 2024 14:22:44 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Tue Mar 19 2024 07:08:45 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>@sap/generator-fiori-elements|
 |**App Generator Version**<br>1.13.0|
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>Local Cap|
-|**Service URL**<br>http://localhost:4004/odata/v4/my/
-|**Module Name**<br>app2|
-|**Application Title**<br>App2|
+|**Service URL**<br>http://localhost:4004/odata/v4/service2/
+|**Module Name**<br>app2approval|
+|**Application Title**<br>Approval|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.121.2|
@@ -19,7 +19,7 @@
 |**Main Entity**<br>reimbursementheader|
 |**Navigation Entity**<br>None|
 
-## app2
+## app2approval
 
 An SAP Fiori application.
 
@@ -27,7 +27,7 @@ An SAP Fiori application.
 
 -   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  In order to launch the generated app, simply start your CAP project and navigate to the following location in your browser:
 
-http://localhost:4004/app2/webapp/index.html
+http://localhost:4004/app2approval/webapp/index.html
 
 #### Pre-requisites:
 

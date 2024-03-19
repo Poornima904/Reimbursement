@@ -22,16 +22,16 @@
         "undeploy": "cf undeploy reimburse --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
         "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-        "watch-app2": "cds watch --open app2/webapp/index.html?sap-ui-xx-viewCache=false"
+        "watch-app2approval": "cds watch --open app2approval/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "requires": {
             "db": "hana",
-            "auth":"dummy"
+            "auth": "dummy"
         }
     },
     "sapux": [
         "app/app1",
-        "app/app2"
+        "app/app2approval"
     ]
 }

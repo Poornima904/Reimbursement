@@ -1,15 +1,15 @@
 sap.ui.require(
     [
         'sap/fe/test/JourneyRunner',
-        'app2/test/integration/FirstJourney',
-		'app2/test/integration/pages/reimbursementheaderList',
-		'app2/test/integration/pages/reimbursementheaderObjectPage'
+        'app2approval/test/integration/FirstJourney',
+		'app2approval/test/integration/pages/reimbursementheaderList',
+		'app2approval/test/integration/pages/reimbursementheaderObjectPage'
     ],
     function(JourneyRunner, opaJourney, reimbursementheaderList, reimbursementheaderObjectPage) {
         'use strict';
         var JourneyRunner = new JourneyRunner({
             // start index.html in web folder
-            launchUrl: sap.ui.require.toUrl('app2') + '/index.html'
+            launchUrl: sap.ui.require.toUrl('app2approval') + '/index.html'
         });
 
        
