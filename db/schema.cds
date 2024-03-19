@@ -9,7 +9,7 @@ entity reimbursementheader{
     status :String;
     created_by: String;
     head_item1: Composition of many reimbursementitem on head_item1.item1 = $self;
-    head_item2: Composition of many Files on head_item2.files = $self;
+    head_item2: Association to  many Files on head_item2.r_id = r_id;
     head_item3: Composition of many comment on head_item3.comment1 = $self;
 }
 

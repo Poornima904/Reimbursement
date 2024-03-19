@@ -35,11 +35,6 @@ annotate service.reimbursementheader with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'r_id',
-                Value : r_id,
-            },
-            {
-                $Type : 'UI.DataField',
                 Label : 'rem_date',
                 Value : rem_date,
             },
@@ -69,7 +64,7 @@ annotate service.reimbursementheader with @(
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'item',
+            Label : 'LineItem',
             ID : 'item',
             Target : 'head_item1/@UI.LineItem#item',
         },
@@ -78,14 +73,6 @@ annotate service.reimbursementheader with @(
 annotate service.reimbursementitem with @(
     UI.LineItem #item : [
         {
-            $Type : 'UI.DataField',
-            Value : r_id,
-            Label : 'r_id',
-        },{
-            $Type : 'UI.DataField',
-            Value : item,
-            Label : 'item',
-        },{
             $Type : 'UI.DataField',
             Value : rem_date,
             Label : 'rem_date',
