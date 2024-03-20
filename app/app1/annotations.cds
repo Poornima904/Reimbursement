@@ -4,55 +4,53 @@ annotate service.reimbursementheader with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'r_id',
-            Value : r_id,
+            Label : 'Reimbursment Id',
+            Value : reimbursmentId,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'rem_date',
-            Value : rem_date,
+            Label : 'Reimbursement Date',
+            Value : reimbursementDate,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'total_amount',
-            Value : total_amount,
+            Label : 'Total Amount',
+            Value : totalAmount,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'status',
-            Value : status,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'created_by',
-            Value : created_by,
-        },
+            Label : 'Status',
+            Value : status_dis,
+            Criticality : status_val,
+            CriticalityRepresentation : #WithIcon,
+        }
     ]
 );
+// annotate MyService.reimbursementheader with @(
+//     Capabilities.Insertable : false  
+// );
+// annotate service.bank with @(
+//     Capabilities.Deletable : false  
+// );
 annotate service.reimbursementheader with @(
     UI.FieldGroup #GeneratedGroup1 : {
         $Type : 'UI.FieldGroupType',
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'rem_date',
-                Value : rem_date,
+                Label : 'Reimbursement Date',
+                Value : reimbursementDate,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'total_amount',
-                Value : total_amount,
+                Label : 'Total Amount',
+                Value : totalAmount,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'status',
-                Value : status,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'created_by',
-                Value : created_by,
-            },
+                Label : 'Status',
+                Value : status_dis,
+            }
         ],
     },
     UI.Facets : [
@@ -64,9 +62,9 @@ annotate service.reimbursementheader with @(
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'LineItem',
+            Label : 'Reimbursement Type',
             ID : 'item',
-            Target : 'head_item1/@UI.LineItem#item',
+            Target : 'headItem1/@UI.LineItem#item',
         },
     ]
 );
@@ -74,34 +72,38 @@ annotate service.reimbursementitem with @(
     UI.LineItem #item : [
         {
             $Type : 'UI.DataField',
-            Value : rem_date,
-            Label : 'rem_date',
+            Value : reimbursmentType,
+            Label : 'Reimbursment Type',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : reimbursmentDate,
+            Label : 'Reimbursment Date',
         },{
             $Type : 'UI.DataField',
-            Value : rem_type,
-            Label : 'rem_type',
+            Value : amountToBeReimbursed,
+            Label : 'Amount To Be Reimbursed',
         },{
             $Type : 'UI.DataField',
-            Value : amount_to_be_reimbursed,
-            Label : 'amount_to_be_reimbursed',
-        },{
-            $Type : 'UI.DataField',
-            Value : amount_eligible_to_claim,
-            Label : 'amount_eligible_to_claim',
+            Value : amountEligibleToClaim,
+            Label : 'Amount Eligible To Claim',
         },]
 );
 annotate service.reimbursementitem with {
-    rem_type @(Common.ValueList : {
+    reimbursmentType @(Common.ValueList : {
             $Type : 'Common.ValueListType',
             CollectionPath : 'vluehelp_remtype',
             Parameters : [
                 {
                     $Type : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : rem_type,
-                    ValueListProperty : 'rem_type',
+                    LocalDataProperty : reimbursmentType,
+                    ValueListProperty : 'remType',
                 },
             ],
             Label : 'rem_type',
         },
         Common.ValueListWithFixedValues : true
 )};
+annotate service.reimbursementheader with {
+    createdBy @Common.FieldControl : #ReadOnly
+};

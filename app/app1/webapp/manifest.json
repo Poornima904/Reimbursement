@@ -63,7 +63,8 @@
         "sap.m": {},
         "sap.ui.core": {},
         "sap.ushell": {},
-        "sap.fe.templates": {}
+        "sap.fe.templates": {},
+        "sap.suite.ui.commons": {}
       }
     },
     "contentDensities": {
@@ -93,7 +94,11 @@
       }
     },
     "resources": {
-      "css": []
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
     },
     "routing": {
       "routes": [
@@ -146,11 +151,38 @@
                       },
                       "title": "Attachment",
                       "type": "XMLFragment"
+                    },
+                    "Comments": {
+                      "template": "app1.ext.fragment.Comments",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Frag1"
+                      },
+                      "title": "Comments",
+                      "type": "XMLFragment"
+                    },
+                    "Workflow": {
+                      "template": "app1.ext.fragment.Workflow",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Frag1"
+                      },
+                      "title": "Workflow History",
+                      "type": "XMLFragment"
                     }
                   }
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController": {
+            "controllerName": "app1.ext.controller.Object_extension"
           }
         }
       }
