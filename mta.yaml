@@ -68,9 +68,23 @@ modules:
       - app1.zip
       name: app1
       target-path: resources/
+    - artifacts:
+      - app2approval.zip
+      name: app2approval
+      target-path: resources/
 - name: app1
   type: html5
   path: app/app1
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: app2approval
+  type: html5
+  path: app/app2approval
   build-parameters:
     build-result: dist
     builder: custom

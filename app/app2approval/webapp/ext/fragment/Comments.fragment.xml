@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros">
+	
+	<VBox id="vb" class="mainVboxComment">
+	
+	<HBox id="hb" justifyContent="SpaceBetween">
+			<TextArea id="txtarea" placeholder="Write a Comment" rows="8" width = "50vw"/>
+			<!-- <Button  id="btn2" class="buttonhistory" core:require="{ handler: 'app2approval/ext/fragment/Comments'}" text="Comments" press="handler.onPress" /> -->
+			<Button  id="btn3" class="buttonhistory" core:require="{ handler: 'app2approval/ext/fragment/Comments'}" text="Comment History" 
+			press="handler.onPress"  icon="sap-icon://comment" />
+	</HBox>
+	</VBox>
+</core:FragmentDefinition>
+
+

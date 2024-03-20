@@ -23,6 +23,7 @@
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
         "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
     },
+    
     "cds": {
         "requires": {
             "db": "hana",
@@ -30,6 +31,7 @@
         }
     },
     "sapux": [
-        "app/app1"
+        "app/app1",
+        "app/app2approval"
     ]
 }
