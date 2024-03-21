@@ -4,7 +4,6 @@ module.exports = cds.service.impl(async function () {
     let { reimbursementitem, reimbursementheader } = this.entities;
 
     this.before('CREATE', 'Files', req => {
-        debugger
         console.log('Create called')
         console.log(JSON.stringify(req.data))
         req.data.url = `/odata/v4/my/Files(${req.data.ID})/content`
@@ -13,15 +12,15 @@ module.exports = cds.service.impl(async function () {
 
     this.
         before('READ', 'Files', req => {
-
+            debugger
             //check content-type
             console.log('content-type: ', req.headers['content-type'])
         })
-
+        
     //For creating unique id for reimbursment item
     this.on('CREATE', reimbursementitem.drafts, async (req) => {
-        // debugger
-        let drafttable = await SELECT.from('DRAFT_DRAFTADMINISTRATIVEDATA');
+        debugger
+    
         var now = new Date();
         var randomNum = '';
         randomNum += Math.round(Math.random() * 9);
@@ -32,7 +31,7 @@ module.exports = cds.service.impl(async function () {
         const roleData = {
             reimbursmentId: req.data.reimbursmentId,
             item: randomNum,
-            DRAFTADMINISTRATIVEDATA_DRAFTUUID: drafttable[drafttable.length - 1].DRAFTUUID
+            DRAFTADMINISTRATIVEDATA_DRAFTUUID: req.data.DraftAdministrativeData_DraftUUID
         };
 
         await cds.transaction(req).run(
@@ -44,7 +43,7 @@ module.exports = cds.service.impl(async function () {
     //For criticality(new)
 
     this.after('CREATE', reimbursementheader.drafts, async (req, next) => {
-        // debugger
+        debugger
         let data = await SELECT.from(reimbursementheader.drafts);
 
         let drafttable = await SELECT.from('DRAFT_DRAFTADMINISTRATIVEDATA');
@@ -75,31 +74,21 @@ module.exports = cds.service.impl(async function () {
     })
 
 
-    // this.on('SAVE', reimbursementheader, async (req, next) => {
-    //     debugger
-        // var data = await SELECT.from(reimbursementitem);
-        // for (let i = 0; i < data.length ; i++) {
-        //     req.data.headItem1.
-        // }
-        // // var total = 200;
-        // record.
-        // req.data.totalAmount = '12222';
-        // return next();
-        // })
-        // let draft_item = await SELECT.from(reimbursementitem.drafts);
-        // let original_table = await SELECT.from(reimbursementitem);
-        // let rid1 = req.data.reimbursmentId;
-        // let ramount = req.data.amountToBeReimbursed; 
-        // let ramount_in_integer = parseInt(ramount);
-        // let sum = 0;
-        // for (let i = 0; i < original_table.length ; i++) {
-        //     let amount = original_table[i].amountToBeReimbursed;
-        //     let amount_in_integer = parseInt(amount);
-        //     sum = sum + amount_in_integer;
-        // }
-        // let total_sum = sum + ramount_in_integer;
-        // let final_sum = total_sum.toString();
-        // await UPDATE(reimbursementheader).set({ totalAmount : final_sum }).where({reimbursmentId: rid1});
-    // })
+    this.on('SAVE', reimbursementheader, async (req, next) => {
+        debugger
+        var data = await SELECT.from(reimbursementitem).where ({reimbursmentId:req.data.reimbursmentId});
+        let sum = 0;
+        let sum_in_integer;
+        for (let i = 0; i < data.length ; i++) {
+            let amount = req.data.headItem1[i].amountToBeReimbursed;
+            let amount_in_integer = parseInt(amount);
+            sum = sum + amount_in_integer;
+        }
+        sum_in_integer = sum.toString();
+        req.data.totalAmount = sum_in_integer;
+        return next();
+    })
+    
+
 });
 

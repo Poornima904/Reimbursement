@@ -1,13 +1,15 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros" displayBlock="true"
-xmlns:mvc="sap.ui.core.mvc" xmlns:upload="sap.m.upload">
-	<VBox id="11">
-		 <upload:UploadSet
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros"
+displayBlock="true"
+xmlns:mvc="sap.ui.core.mvc"
+	xmlns:upload="sap.m.upload">
+	<VBox id= "11" >
+		<upload:UploadSet
 					id="uploadSet"
-					core:require="{ handler:  'app1/ext/fragment/Frag1'}"
+					core:require="{ handler: 'app2approval/ext/fragment/Attachment'}"
 					instantUpload="false"
 					uploadEnabled="false"
-					showIcons="true"
 					uploadButtonInvisible="true"
+					showIcons="true"
 					afterItemAdded="handler.onAfterItemAdded"
 					uploadCompleted="handler.onUploadCompleted"
 					items="{
@@ -15,7 +17,8 @@ xmlns:mvc="sap.ui.core.mvc" xmlns:upload="sap.m.upload">
 								parameters: {
 									$orderby: 'createdAt desc'
 								},
-								templateShareable: false}">
+								templateShareable: false}"
+								>
 					<upload:toolbar>
 					</upload:toolbar>
 					<upload:items>
@@ -29,41 +32,34 @@ xmlns:mvc="sap.ui.core.mvc" xmlns:upload="sap.m.upload">
 								formatter: 'handler.formatThumbnailUrl'
 							}"
 							enabledEdit="false"
-							visibleEdit="false"
-							visibleRemove="false"
 							openPressed="handler.onOpenPressed"
-							removePressed="handler.onRemovePressed">
+							removePressed="handler.onRemovePressed"
+							visibleRemove="false" 
+							visibleEdit="false">
 							<upload:attributes>
 								<ObjectAttribute
 								id="dd"
 									title="Uploaded By"
 									text="{createdBy}"
-									active="false"
-								/>
+									active="false"/>
 								<ObjectAttribute
 								id="dd22"
 									title="Uploaded on"
 									text="{createdAt}"
-									active="false"
-								/>
+									active="false"/>
 								<ObjectAttribute
 								id="dddw2"
-
 									title="File Type"
 									text="{mediaType}"
-									active="false"
-								/>
+									active="false"/>
 								<ObjectAttribute
 								id="dd22a"
 									title="File Size"
 									text="{size}"
-									active="false"
-								/>
+									active="false"/>
 							</upload:attributes>
 						</upload:UploadSetItem>
 					</upload:items>
 				</upload:UploadSet>
 	</VBox>
 </core:FragmentDefinition>
-
-

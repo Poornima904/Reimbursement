@@ -5,24 +5,19 @@ annotate service.reimbursementheader with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Value : r_id,
+            Value : reimbursmentId,
             Label : 'Reimbursement Id',
         },
         {
             $Type : 'UI.DataField',
-            Value : rem_date,
+            Value : reimbursementDate,
             Label : 'Reimbursement Date',
         },
         {
             $Type : 'UI.DataField',
-            Value : total_amount,
-            Label : 'Total Aamount',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : status,
-            Label : 'Status',
-        },
+            Value : totalAmount,
+            Label : 'Total Amount',
+        }
     ]
 );
 annotate service2.reimbursementheader with @(
@@ -43,7 +38,7 @@ annotate service.reimbursementheader with @(
             $Type : 'UI.ReferenceFacet',
             Label : 'Reimbursement Details',
             ID : 'ReimbursementDetails',
-            Target : 'head_item1/@UI.LineItem#ReimbursementDetails',
+            Target : 'headItem1/@UI.LineItem#ReimbursementDetails',
         },
     ]
 );
@@ -51,15 +46,15 @@ annotate service.reimbursementitem with @(
     UI.LineItem #ReimbursementDetails : [
         {
             $Type : 'UI.DataField',
-            Value : item1.head_item1.rem_type,
+            Value : item1.headItem1.reimbursmentType,
             Label : 'Reimbursement Type',
         },{
             $Type : 'UI.DataField',
-            Value : item1.head_item1.amount_to_be_reimbursed,
+            Value : item1.headItem1.amountToBeReimbursed,
             Label : 'Amount to be Reimbursed',
         },{
             $Type : 'UI.DataField',
-            Value : item1.head_item1.amount_eligible_to_claim,
+            Value : item1.headItem1.amountEligibleToClaim,
             Label : 'Amount Eligible to Claim',
         },]
 );
@@ -69,16 +64,12 @@ annotate service.reimbursementheader with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Value : rem_date,
+                Value : reimbursementDate,
                 Label : 'Reimbursement Date',
             },{
                 $Type : 'UI.DataField',
-                Value : total_amount,
+                Value : totalAmount,
                 Label : 'Total Amount',
-            },{
-                $Type : 'UI.DataField',
-                Value : status,
-                Label : 'Status',
-            },],
+            }],
     }
 );

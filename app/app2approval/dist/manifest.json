@@ -1,0 +1,220 @@
+{
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "app2approval",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.13.0",
+            "toolsId": "1f77273f-3884-4bd0-9285-3694a6359cef"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "odata/v4/service2/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "sem-display": {
+                    "semanticObject": "sem",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.121.2",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {},
+                "sap.suite.ui.commons": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "app2approval.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "reimbursementheaderList",
+                    "target": "reimbursementheaderList"
+                },
+                {
+                    "pattern": "reimbursementheader({key}):?query:",
+                    "name": "reimbursementheaderObjectPage",
+                    "target": "reimbursementheaderObjectPage"
+                }
+            ],
+            "targets": {
+                "reimbursementheaderList": {
+                    "type": "Component",
+                    "id": "reimbursementheaderList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/reimbursementheader",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "reimbursementheader": {
+                                    "detail": {
+                                        "route": "reimbursementheaderObjectPage"
+                                    }
+                                }
+                            },
+                            "initialLoad": "Enabled"
+                        }
+                    }
+                },
+                "reimbursementheaderObjectPage": {
+                    "type": "Component",
+                    "id": "reimbursementheaderObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/reimbursementheader",
+                            "content": {
+                                "body": {
+                                    "sections": {
+                                        "Attachment": {
+                                            "template": "app2approval.ext.fragment.Attachment",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "ReimbursementDetails"
+                                            },
+                                            "title": "Attachment",
+                                            "type": "XMLFragment"
+                                        },
+                                        "Comments": {
+                                            "template": "app2approval.ext.fragment.Comments",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "Attachment"
+                                            },
+                                            "title": "Comments",
+                                            "type": "XMLFragment"
+                                        },
+                                        "Workflow": {
+                                            "template": "app2approval.ext.fragment.Workflow",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "Attachment"
+                                            },
+                                            "title": "Workflow History",
+                                            "type": "XMLFragment"
+                                        }
+                                    }
+                                },
+                                "footer": {
+                                    "actions": {
+                                        "Approve": {
+                                            "press": "app2approval.ext.controller.Approve.ApproveM",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Approve"
+                                        },
+                                        "Reject": {
+                                            "press": "app2approval.ext.controller.Reject.Reject",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Reject",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "Approve"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController": {
+                        "controllerName": "app2approval.ext.controller.Object"
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "unique"
+    }
+}

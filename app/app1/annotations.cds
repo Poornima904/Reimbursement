@@ -26,12 +26,24 @@ annotate service.reimbursementheader with @(
         }
     ]
 );
+
+annotate MyService.reimbursementitem with @Common.SideEffects:{
+    $Type : 'Common.SideEffectsType',
+    SourceProperties : [
+        item
+    ],
+    TargetProperties : [
+        '*',
+    ],
+};
+
+
 // annotate MyService.reimbursementheader with @(
 //     Capabilities.Insertable : false  
 // );
-// annotate service.bank with @(
-//     Capabilities.Deletable : false  
-// );
+annotate MyService.reimbursementheader with @(
+    Capabilities.Deletable : false  
+);
 annotate service.reimbursementheader with @(
     UI.FieldGroup #GeneratedGroup1 : {
         $Type : 'UI.FieldGroupType',
@@ -62,14 +74,19 @@ annotate service.reimbursementheader with @(
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Reimbursement Type',
-            ID : 'item',
-            Target : 'headItem1/@UI.LineItem#item',
+            Label : 'Reimbursement Details',
+            ID : 'Reimburs',
+            Target : 'headItem1/@UI.LineItem#Reimburs',
         },
     ]
 );
 annotate service.reimbursementitem with @(
     UI.LineItem #item : [
+        {
+            $Type : 'UI.DataField',
+            Value : item,
+            Label : 'item',
+        },
         {
             $Type : 'UI.DataField',
             Value : reimbursmentType,
@@ -106,4 +123,35 @@ annotate service.reimbursementitem with {
 )};
 annotate service.reimbursementheader with {
     createdBy @Common.FieldControl : #ReadOnly
+};
+annotate service.reimbursementitem with @(
+    UI.LineItem #Reimburs : [
+        {
+            $Type : 'UI.DataField',
+            Value : item,
+            Label : 'Item Id',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : reimbursmentType,
+            Label : 'Reimbursment Type',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : reimbursmentDate,
+            Label : 'Reimbursment Date',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : amountToBeReimbursed,
+            Label : 'Amount to be Re imbursed',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : amountEligibleToClaim,
+            Label : 'Amount Eligible to Claim',
+        },]
+);
+annotate service.reimbursementheader with {
+    reimbursementDate @Common.FieldControl : #ReadOnly
 };

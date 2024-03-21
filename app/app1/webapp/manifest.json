@@ -128,6 +128,19 @@
                     "route": "reimbursementheaderObjectPage"
                   }
                 }
+              },
+              "initialLoad": "Enabled",
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "columns": {
+                    "DataField::reimbursementDate": {
+                      "width": "200px"
+                    },
+                    "DataField::reimbursmentId": {
+                      "width": "350px"
+                    }
+                  }
+                }
               }
             }
           }
@@ -147,7 +160,7 @@
                       "template": "app1.ext.fragment.Frag1",
                       "position": {
                         "placement": "After",
-                        "anchor": "item"
+                        "anchor": "Reimburs"
                       },
                       "title": "Attachment",
                       "type": "XMLFragment"
@@ -156,7 +169,7 @@
                       "template": "app1.ext.fragment.Comments",
                       "position": {
                         "placement": "After",
-                        "anchor": "Frag1"
+                        "anchor": "Workflow"
                       },
                       "title": "Comments",
                       "type": "XMLFragment"
@@ -182,7 +195,7 @@
       "extensions": {
         "sap.ui.controllerExtensions": {
           "sap.fe.templates.ObjectPage.ObjectPageController": {
-            "controllerName": "app1.ext.controller.Object_extension"
+            "controllerName": "app1.ext.controller.ObjectC"
           }
         }
       }

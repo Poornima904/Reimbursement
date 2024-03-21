@@ -1,3 +1,15 @@
+// sap.ui.define([
+//     "sap/m/MessageToast"
+// ], function(MessageToast) {
+//     'use strict';
+
+//     return {
+//         onPress: function(oEvent) {
+//             MessageToast.show("Custom handler invoked.");
+//         }
+//     };
+// });
+
 sap.ui.define([
     "sap/m/MessageToast",
     "sap/ui/model/json/JSONModel",
@@ -57,7 +69,6 @@ sap.ui.define([
 		},
         
 			onUploadCompleted: function (oEvent) {
-                debugger
 				var oUploadSet = this.byId("uploadSet");
 				oUploadSet.removeAllIncompleteItems();
 				oUploadSet.getBinding("items").refresh();
@@ -195,4 +206,3 @@ sap.ui.define([
 
     };
 });
-
