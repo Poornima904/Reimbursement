@@ -3,11 +3,13 @@ sap.ui.define([
     "sap/m/Dialog",
     "sap/m/Button",
     "sap/m/ButtonType"
-], function(MessageToast, Dialog, Button, ButtonType) {
+], function (MessageToast, Dialog, Button, ButtonType) {
     'use strict';
 
     return {
-        ApproveM: function(oEvent) {
+        ApproveM: function (oEvent) {
+            var that = this;
+            debugger
             var dialog = new Dialog({
                 title: "Confirmation",
                 type: "Message",
@@ -17,10 +19,27 @@ sap.ui.define([
                 beginButton: new Button({
                     type: ButtonType.Accept,
                     text: "Yes",
-                    press: function () {
-                        dialog.close();
-                        // window.location.href = "https://port38777-workspaces-ws-crf8t.us10.trial.applicationstudio.cloud.sap/app2approval/webapp/index.html";
+                    press: async function (oEvent, oPath) {
+                        debugger
+                        var status = 'Approved';
+                        // var url = `/odata/v4/my/reimbursementheader('${reimbursmentId}')`;
+
+                        var path = window.location.href;
+                        var kid = path.match(/\(([^\)]+)\)$/)[1];
+
+                        const parts = kid.split("'");
+                        const id = parts[parts.length - 2];
+
+                        var url = `/odata/v4/my/reimbursementheader('${id}')`;
+                        let testdata = JSON.stringify({ status_dis: status, keyfield: id })
+
+                        let functionname = 'rheaderfunc';
+                        let oFunction = that._view.getModel().bindContext(`/${functionname}(...)`);
+                        oFunction.setParameter('data', testdata);
+                        // oFunction.setParameter('file',this.file);
+                        await oFunction.execute();
                         window.history.go(-1);
+                        dialog.destroy();
                     }
                 }),
                 endButton: new Button({
@@ -30,7 +49,7 @@ sap.ui.define([
                         dialog.close();
                     }
                 }),
-                afterClose: function() {
+                afterClose: function () {
                     dialog.destroy();
                 }
             });

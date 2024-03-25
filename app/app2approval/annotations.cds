@@ -10,22 +10,37 @@ annotate service.reimbursementheader with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : reimbursementDate,
-            Label : 'Reimbursement Date',
+            Value : totalAmount,
+            Label : 'Total Amount',
         },
         {
             $Type : 'UI.DataField',
-            Value : totalAmount,
-            Label : 'Total Amount',
+            Value : submittedBy,
+            Label : 'Submitted By',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : reimbursementDate,
+            Label : 'Submission Date',
         }
     ]
 );
+
+
 annotate service2.reimbursementheader with @(
     Capabilities.Insertable : false  
 );
 annotate service2.reimbursementheader with @(
     Capabilities.Deletable : false  
 );
+annotate service2.reimbursementheader with @(UI.HeaderInfo: {
+    Title         : {
+        $Type: 'UI.DataField',
+        Value: '',
+    },
+    TypeName      : 'Reimbursement Details',
+    TypeNamePlural: '',
+});
 annotate service.reimbursementheader with @(
     UI.Facets : [
         {
@@ -73,3 +88,4 @@ annotate service.reimbursementheader with @(
             }],
     }
 );
+

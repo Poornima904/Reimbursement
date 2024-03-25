@@ -122,8 +122,17 @@ annotate service.reimbursementitem with {
         Common.ValueListWithFixedValues : true
 )};
 annotate service.reimbursementheader with {
-    createdBy @Common.FieldControl : #ReadOnly
+    submittedBy @Common.FieldControl : #ReadOnly
 };
+annotate MyService.reimbursementheader with @(UI.HeaderInfo: {
+    Title         : {
+        $Type: 'UI.DataField',
+        Value: reimbursmentId,
+    },
+    TypeName      : 'Reimbursement Details',
+    TypeNamePlural: '',
+});
+
 annotate service.reimbursementitem with @(
     UI.LineItem #Reimburs : [
         {
@@ -152,6 +161,3 @@ annotate service.reimbursementitem with @(
             Label : 'Amount Eligible to Claim',
         },]
 );
-annotate service.reimbursementheader with {
-    reimbursementDate @Common.FieldControl : #ReadOnly
-};

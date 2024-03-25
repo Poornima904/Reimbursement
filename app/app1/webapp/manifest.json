@@ -134,10 +134,16 @@
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "columns": {
                     "DataField::reimbursementDate": {
-                      "width": "200px"
+                      "width": "350px"
                     },
                     "DataField::reimbursmentId": {
+                      "width": "250px"
+                    },
+                    "DataField::totalAmount": {
                       "width": "350px"
+                    },
+                    "DataField::status_dis": {
+                      "width": "250px"
                     }
                   }
                 }
@@ -185,6 +191,27 @@
                     }
                   }
                 }
+              },
+              "controlConfiguration": {
+                "headItem1/@com.sap.vocabularies.UI.v1.LineItem#Reimburs": {
+                  "columns": {
+                    "DataField::item": {
+                      "width": "150px"
+                    },
+                    "DataField::reimbursmentDate": {
+                      "width": "200px"
+                    },
+                    "DataField::amountToBeReimbursed": {
+                      "width": "200px"
+                    },
+                    "DataField::amountEligibleToClaim": {
+                      "width": "250px"
+                    },
+                    "DataField::reimbursmentType": {
+                      "width": "250px"
+                    }
+                  }
+                }
               }
             }
           }
@@ -196,6 +223,9 @@
         "sap.ui.controllerExtensions": {
           "sap.fe.templates.ObjectPage.ObjectPageController": {
             "controllerName": "app1.ext.controller.ObjectC"
+          },
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "app1.ext.controller.ListC"
           }
         }
       }

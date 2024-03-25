@@ -1,15 +1,3 @@
-// sap.ui.define([
-//     "sap/m/MessageToast"
-// ], function(MessageToast) {
-//     'use strict';
-
-//     return {
-//         onPress: function(oEvent) {
-//             MessageToast.show("Custom handler invoked.");
-//         }
-//     };
-// });
-
 sap.ui.define([
     "sap/m/MessageToast",
     "sap/ui/model/json/JSONModel",
@@ -36,7 +24,7 @@ sap.ui.define([
 				};
 		
 				var settings = {
-					url: "/odata/v4/my/Files",
+					url: "/odata/v4/service2/Files",
 					method: "POST",
 					headers: {
 						"Content-type": "application/json"
@@ -57,11 +45,13 @@ sap.ui.define([
 		
 			_createEntity(item)
 				.then((id) => {
-					var url = `/odata/v4/my/Files(${id})/content`;
+					var url = `/odata/v4/service2/Files(${id})/content`;
 					item.setUploadUrl(url);
 					var oUploadSet = this.byId("uploadSet");
 					oUploadSet.setHttpRequestMethod("PUT");
 					oUploadSet.uploadItem(item);
+					oUploadSet.refresh();
+					
 				})
 				.catch((err) => {
 					console.log(err);
@@ -72,6 +62,7 @@ sap.ui.define([
 				var oUploadSet = this.byId("uploadSet");
 				oUploadSet.removeAllIncompleteItems();
 				oUploadSet.getBinding("items").refresh();
+				
 			},
 
 			onRemovePressed: function (oEvent) {
@@ -152,7 +143,7 @@ sap.ui.define([
 				};
 
 				var settings = {
-					url: "/my/Files",
+					url: "/service2/Files",
 					method: "POST",
 					headers: {
 						"Content-type": "application/json"
@@ -172,7 +163,7 @@ sap.ui.define([
 			},
 
 			_uploadContent: function (item, id) {
-				var url = `/my/Files(${id})/content`
+				var url = `/service2/Files(${id})/content`
 				item.setUploadUrl(url);
 				var oUploadSet = this.byId("uploadSet");
 				oUploadSet.setHttpRequestMethod("PUT")

@@ -15,16 +15,24 @@ sap.ui.define([
 		onAfterItemAdded: function(oEvent) {
 			debugger;
 			var item = oEvent.getParameter("item");
-		
+			var url1 = this._view.getModel().sServiceUrl;
 			var _createEntity = function(item) {
+				var path1 = window.location.href;
+					var regex = /reimbursmentId='(\d+)'/;
+					var match = path1.match(regex);
+					var key = match[1];
 				var data = {
 					mediaType: item.getMediaType(),
 					fileName: item.getFileName(),
-					size: item.getFileObject().size
+					size: item.getFileObject().size,
+					reimbursmentId:key
+
 				};
+				
 		
 				var settings = {
-					url: "/odata/v4/my/Files",
+					// url: "/odata/v4/my/Files",
+					url : url1 + `Files`,
 					method: "POST",
 					headers: {
 						"Content-type": "application/json"
@@ -35,7 +43,7 @@ sap.ui.define([
 				return new Promise((resolve, reject) => {
 					$.ajax(settings)
 						.done((results, textStatus, request) => {
-							resolve(results.ID);
+							resolve(results.fileId);
 						})
 						.fail((err) => {
 							reject(err);
@@ -44,8 +52,9 @@ sap.ui.define([
 			};
 		
 			_createEntity(item)
-				.then((id) => {
-					var url = `/odata/v4/my/Files(${id})/content`;
+				.then((fileId) => {
+					// var url = `/odata/v4/my/Files(${fileId})/content`;
+					var url = url1 + `Files(${fileId})/content`;
 					item.setUploadUrl(url);
 					var oUploadSet = this.byId("uploadSet");
 					oUploadSet.setHttpRequestMethod("PUT");
@@ -90,9 +99,11 @@ sap.ui.define([
 					return new Promise((resolve, reject) => {
 						$.ajax(settings)
 							.done((result) => {
+								console.log('Downloaded Blob:', result);
 								resolve(result);
 							})
 							.fail((err) => {
+								console.error('Download Error:', err);
 								reject(err);
 							});
 					});

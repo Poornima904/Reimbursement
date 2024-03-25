@@ -5,7 +5,7 @@ xmlns:mvc="sap.ui.core.mvc" xmlns:upload="sap.m.upload">
 					id="uploadSet"
 					core:require="{ handler:  'app1/ext/fragment/Frag1'}"
 					instantUpload="false"
-					uploadEnabled="false"
+					uploadEnabled="true"
 					showIcons="true"
 					uploadButtonInvisible="true"
 					afterItemAdded="handler.onAfterItemAdded"

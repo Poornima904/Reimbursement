@@ -2,14 +2,15 @@
 displayBlock="true"
 xmlns:mvc="sap.ui.core.mvc"
 	xmlns:upload="sap.m.upload">
-	<VBox id= "11" >
+	<VBox id= "v11" >
 		<upload:UploadSet
 					id="uploadSet"
 					core:require="{ handler: 'app2approval/ext/fragment/Attachment'}"
 					instantUpload="false"
-					uploadEnabled="false"
+					uploadEnabled="true"
 					uploadButtonInvisible="true"
 					showIcons="true"
+					mode="None"
 					afterItemAdded="handler.onAfterItemAdded"
 					uploadCompleted="handler.onUploadCompleted"
 					items="{

@@ -37,14 +37,14 @@
                 <items>
                     <ColumnListItem id="cli1">
                         <cells>
-                             <Text text="Level" id="t14"/>
-                            <Text text="Title" id="t6"/>
+                            <!-- <Text text="Level" id="t14"/> -->
+                            <!-- <Text text="Title" id="t6"/>
                             <Text text="Employee_id" id="t7"/>
                             <Text text="Employee_Name" id="t8"/>
                             <Text text="Begin_Date_Time" id="t9"/>
                             <Text text="End_Date_Time" id="t11"/>
                             <Text text="Days_Taken" id="t12"/>
-                            <Text text="Approved_By" id="t13"/>
+                            <Text text="Approved_By" id="t13"/> -->
                         </cells>
                     </ColumnListItem>
                 </items>

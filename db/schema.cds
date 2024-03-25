@@ -6,12 +6,13 @@ using {
 } from '@sap/cds/common';
 
 entity reimbursementheader {
-    key reimbursmentId    : UUID;
+    key reimbursmentId    : String @readonly;
         reimbursementDate : Date;
-        totalAmount       : String @readonly;
+        totalAmount       : Decimal(10, 2) @readonly;
         status_dis        : String @readonly;
         status_val        : Integer;
-        createdBy         : String;
+        submittedBy         : String;
+        submissionDate : DateTime;
         headItem1         : Composition of many reimbursementitem
                                 on headItem1.item1 = $self;
         headItem2         : Association to many Files
@@ -21,23 +22,22 @@ entity reimbursementheader {
 }
 
 entity reimbursementitem {
-    key reimbursmentId        : UUID;
+    key reimbursmentId        : String;
     key item                  : String;
         reimbursmentType      : String;
         reimbursmentDate      : Date;
-        amountToBeReimbursed  : String;
-        amountEligibleToClaim : String;
+        amountToBeReimbursed  : Decimal(10, 2);
+        amountEligibleToClaim : Decimal(10, 2);
         item1                 : Association to one reimbursementheader
                                     on item1.reimbursmentId = reimbursmentId;
 }
 
 entity Files : cuid, managed {
     key fileId         : UUID;
-        reimbursmentId : UUID;
+        reimbursmentId : String;
 
         @Core.MediaType  : mediaType
         content        : LargeBinary;
-
         @Core.IsMediaType: true
         mediaType      : String;
         fileName       : String;
@@ -46,10 +46,9 @@ entity Files : cuid, managed {
         files          : Association to one reimbursementheader
                              on files.reimbursmentId = reimbursmentId;
 }
-
 entity comment {
     key commentId      : UUID;
-        reimbursmentId : UUID;
+        reimbursmentId : String;
         textArea       : String;
         comment1       : Association to one reimbursementheader
                              on comment1.reimbursmentId = reimbursmentId;

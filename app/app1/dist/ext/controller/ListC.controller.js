@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/core/mvc/ControllerExtension"],function(e){"use strict";return e.extend("app1.ext.controller.ListC",{override:{onInit:function(){var e=this.base.getExtensionAPI().getModel()},routing:{onAfterBinding:function(){debugger}},editFlow:{invokeAction:function(){debugger},beforeNavigationTo:function(){debugger},onAfterActionExecution:function(){debugger}}}})});

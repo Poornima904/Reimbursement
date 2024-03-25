@@ -129,7 +129,25 @@
                   }
                 }
               },
-              "initialLoad": "Enabled"
+              "initialLoad": "Enabled",
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "columns": {
+                    "DataField::reimbursmentId": {
+                      "width": "300px"
+                    },
+                    "DataField::totalAmount": {
+                      "width": "300px"
+                    },
+                    "DataField::submittedBy": {
+                      "width": "300px"
+                    },
+                    "DataField::reimbursementDate": {
+                      "width": "300px"
+                    }
+                  }
+                }
+              }
             }
           }
         },
@@ -193,6 +211,21 @@
                     }
                   }
                 }
+              },
+              "controlConfiguration": {
+                "headItem1/@com.sap.vocabularies.UI.v1.LineItem#ReimbursementDetails": {
+                  "columns": {
+                    "DataField::item1::headItem1::reimbursmentType": {
+                      "width": "350px"
+                    },
+                    "DataField::item1::headItem1::amountToBeReimbursed": {
+                      "width": "350px"
+                    },
+                    "DataField::item1::headItem1::amountEligibleToClaim": {
+                      "width": "450px"
+                    }
+                  }
+                }
               }
             }
           }
@@ -203,7 +236,7 @@
       "extensions": {
         "sap.ui.controllerExtensions": {
           "sap.fe.templates.ObjectPage.ObjectPageController": {
-            "controllerName": "app2approval.ext.controller.Object"
+            "controllerName": "app2approval.ext.controller.ObjC"
           }
         }
       }
