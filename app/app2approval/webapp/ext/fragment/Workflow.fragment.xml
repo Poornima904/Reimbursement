@@ -10,7 +10,7 @@
         <!-- <Button core:require="{ handler: 'headscm2/ext/fragment/Worflow_History'}" text="Workflow History" press="handler.onPress" id="b1" visible="false"/> -->
 
         <ScrollContainer id="scrollContainer" height="280px" width="100%">
-            <Table id="table" items="{path: '/workflow_History'}">
+            <Table id="table">
                 <columns>
                     <Column width="11rem" id="c22" styleClass="colClass">
                         <Text text="Title" id="demo"/>

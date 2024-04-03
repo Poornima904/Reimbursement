@@ -1,0 +1,46 @@
+<mvc:View controllerName="project1.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+		<SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="master">
+		<masterPages>
+			<Page
+				id="master1"
+				title="Reimbursement Details"
+				backgroundDesign="List">
+				<List id="jd" itemPress=".onListItemPress">
+					<items>
+						<StandardListItem id="aaa" title="To Detail 1" type="Active" custom:to="detail1" />
+						<StandardListItem id="aa" title="To Detail 2" type="Active" custom:to="detail2" />
+						<StandardListItem id="aaba" title="To Detail 3" type="Active" custom:to="detail3" />
+					</items>
+				</List>
+			</Page>
+		</masterPages>
+
+		<detailPages>
+			
+			<Page
+				id="detail1"
+				title="Detail 1"
+				backgroundDesign= "Solid">
+			
+				<Label id="lab1" text="Detail page 1" />
+			</Page>
+			<Page
+				id="detail2"
+				title="Detail 2"
+				backgroundDesign= "Solid">
+				<Label id="lab2" text="Detail page 2" />
+			</Page>
+			<Page
+				id="detail3"
+				title="Detail 3"
+				backgroundDesign= "Solid">
+				<Label id="lab3" text="Detail page 3" />
+			</Page>
+
+		</detailPages>
+		</SplitApp>
+</mvc:View>

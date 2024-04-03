@@ -30,7 +30,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 				},
 				onAfterActionExecution:function(){
 					debugger
-				}
+				},
 			}
 		}
 	});

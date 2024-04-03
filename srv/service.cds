@@ -1,6 +1,8 @@
 using {db} from '../db/schema';
 
+// @requires : 'authenticated-user'
 service MyService {
+   
     @odata.draft.enabled
     entity reimbursementheader as projection on db.reimbursementheader;
 
@@ -10,8 +12,10 @@ service MyService {
     entity workflow            as projection on db.workflow;
     entity vluehelp_remtype    as projection on db.vluehelp_remtype;
     function rheaderfunc(data : String) returns String;
+    function asdf(id : String) returns String;
 }
 
+// @requires : 'authenticated-user'
 service service2 {
     // where condition for fetching specific value of field status
     entity reimbursementheader as projection on db.reimbursementheader
@@ -24,5 +28,4 @@ service service2 {
     entity workflow            as projection on db.workflow;
     entity vluehelp_remtype    as projection on db.vluehelp_remtype;
     function rheaderfunc(data : String) returns String;
-
 }

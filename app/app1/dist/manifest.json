@@ -64,7 +64,8 @@
                 "sap.ui.core": {},
                 "sap.ushell": {},
                 "sap.fe.templates": {},
-                "sap.suite.ui.commons": {}
+                "sap.suite.ui.commons": {},
+                "sap.f": {}
             }
         },
         "contentDensities": {
@@ -175,7 +176,7 @@
                                             "template": "app1.ext.fragment.Comments",
                                             "position": {
                                                 "placement": "After",
-                                                "anchor": "Workflow"
+                                                "anchor": "Frag1"
                                             },
                                             "title": "Comments",
                                             "type": "XMLFragment"

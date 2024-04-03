@@ -19,6 +19,8 @@ entity reimbursementheader {
                                 on headItem2.reimbursmentId = reimbursmentId;
         headItem3         : Composition of many comment
                                 on headItem3.comment1 = $self;
+        headItem4         : Composition of many workflow
+                                on headItem4.workflow1 = $self;
 }
 
 entity reimbursementitem {
@@ -57,6 +59,14 @@ entity comment {
 entity workflow {
     key workFlowId     : UUID;
         reimbursmentId : String;
+        level : String;
+        BeginDate: Date;
+        EndDate: Date;
+        DaysTaken :String;
+        Users :String;
+        ApprovedBy: String;
+        workflow1 : Association to one reimbursementheader on workflow1.reimbursmentId = reimbursmentId;
+
 }
 
 entity vluehelp_remtype {

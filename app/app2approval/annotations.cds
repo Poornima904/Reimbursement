@@ -15,11 +15,6 @@ annotate service.reimbursementheader with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : submittedBy,
-            Label : 'Submitted By',
-        },
-        {
-            $Type : 'UI.DataField',
             Value : reimbursementDate,
             Label : 'Submission Date',
         }

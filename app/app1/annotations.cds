@@ -161,3 +161,39 @@ annotate service.reimbursementitem with @(
             Label : 'Amount Eligible to Claim',
         },]
 );
+
+annotate service.workflow with @(
+    UI.LineItem #workflow : [
+        {
+            $Type : 'UI.DataField',
+            Value : level,
+            Label : 'level',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Users,
+            Label : 'Users',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : BeginDate,
+            Label : 'BeginDate',
+        },{
+            $Type : 'UI.DataField',
+            Value : reimbursmentId,
+            Label : 'reimbursmentId',
+            ![@UI.Hidden],
+        },{
+            $Type : 'UI.DataField',
+            Value : EndDate,
+            Label : 'EndDate',
+        },{
+            $Type : 'UI.DataField',
+            Value : DaysTaken,
+            Label : 'DaysTaken',
+        },{
+            $Type : 'UI.DataField',
+            Value : ApprovedBy,
+            Label : 'ApprovedBy',
+        },]
+);
