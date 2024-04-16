@@ -43,18 +43,22 @@ sap.ui.define([
 				return new Promise((resolve, reject) => {
 					$.ajax(settings)
 						.done((results, textStatus, request) => {
-							resolve(results.fileId);
+							debugger
+							var ids = [results.fileId,results.ID]
+							resolve(ids);
+							// resolve(results.fileId,results.ID);
 						})
 						.fail((err) => {
 							reject(err);
 						});
 				});
 			};
-		
+			debugger
 			_createEntity(item)
-				.then((fileId) => {
+				.then((ids) => {
+					debugger
 					// var url = `/odata/v4/my/Files(${fileId})/content`;
-					var url = url1 + `Files(${fileId})/content`;
+					var url = url1 + `Files(ID=${ids[1]},fileId=${ids[0]})/content`;
 					item.setUploadUrl(url);
 					var oUploadSet = this.byId("uploadSet");
 					oUploadSet.setHttpRequestMethod("PUT");
@@ -163,7 +167,7 @@ sap.ui.define([
 				return new Promise((resolve, reject) => {
 					$.ajax(settings)
 						.done((results, textStatus, request) => {
-							resolve(results.ID);
+							resolve(results.fileId,results.ID);
 						})
 						.fail((err) => {
 							reject(err);
@@ -172,7 +176,9 @@ sap.ui.define([
 			},
 
 			_uploadContent: function (item, id) {
-				var url = `/my/Files(${id})/content`
+				debugger
+				
+				var url = `/my/Files(ID=${ids[1]},fileId=${ids[0]})/content`
 				item.setUploadUrl(url);
 				var oUploadSet = this.byId("uploadSet");
 				oUploadSet.setHttpRequestMethod("PUT")

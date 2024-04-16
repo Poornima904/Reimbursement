@@ -141,7 +141,7 @@
                       "width": "250px"
                     },
                     "DataField::totalAmount": {
-                      "width": "350px"
+                      "width": "300px"
                     },
                     "DataField::status_dis": {
                       "width": "250px"

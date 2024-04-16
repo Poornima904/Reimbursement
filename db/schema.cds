@@ -5,14 +5,30 @@ using {
     managed
 } from '@sap/cds/common';
 
+
+// @cds.persistence.journal
+entity reimbursementtype{
+    key type : String;
+    amount : Decimal(10, 2);
+}
+// @cds.persistence.journal
+entity reimbursementWorkflow{
+    key level : String;
+    key Approvers : String;
+}
+
+
+// @cds.persistence.journal
 entity reimbursementheader {
     key reimbursmentId    : String @readonly;
+        workitemId        : String;
         reimbursementDate : Date;
         totalAmount       : Decimal(10, 2) @readonly;
-        status_dis        : String @readonly;
+        status_dis        : String;
         status_val        : Integer;
-        submittedBy         : String;
-        submissionDate : DateTime;
+        submittedBy       : String;
+        submissionDate    : DateTime;
+        status            : String default 'New';
         headItem1         : Composition of many reimbursementitem
                                 on headItem1.item1 = $self;
         headItem2         : Association to many Files
@@ -22,7 +38,7 @@ entity reimbursementheader {
         headItem4         : Composition of many workflow
                                 on headItem4.workflow1 = $self;
 }
-
+// @cds.persistence.journal
 entity reimbursementitem {
     key reimbursmentId        : String;
     key item                  : String;
@@ -33,11 +49,10 @@ entity reimbursementitem {
         item1                 : Association to one reimbursementheader
                                     on item1.reimbursmentId = reimbursmentId;
 }
-
+// @cds.persistence.journal
 entity Files : cuid, managed {
     key fileId         : UUID;
         reimbursmentId : String;
-
         @Core.MediaType  : mediaType
         content        : LargeBinary;
         @Core.IsMediaType: true
@@ -48,6 +63,7 @@ entity Files : cuid, managed {
         files          : Association to one reimbursementheader
                              on files.reimbursmentId = reimbursmentId;
 }
+// @cds.persistence.journal
 entity comment {
     key commentId      : UUID;
         reimbursmentId : String;
@@ -55,20 +71,21 @@ entity comment {
         comment1       : Association to one reimbursementheader
                              on comment1.reimbursmentId = reimbursmentId;
 }
-
+// @cds.persistence.journal
 entity workflow {
     key workFlowId     : UUID;
-        reimbursmentId : String;
+     reimbursmentId : String;
         level : String;
-        BeginDate: Date;
-        EndDate: Date;
+        status : String;
+        BeginDate: String;
+        EndDate: String;
         DaysTaken :String;
         Users :String;
         ApprovedBy: String;
         workflow1 : Association to one reimbursementheader on workflow1.reimbursmentId = reimbursmentId;
 
 }
-
+// @cds.persistence.journal
 entity vluehelp_remtype {
     key remType : String;
 }

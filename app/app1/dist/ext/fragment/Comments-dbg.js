@@ -1,17 +1,18 @@
 sap.ui.define([
     "sap/m/MessageToast"
-], function(MessageToast) {
+], function (MessageToast) {
     'use strict';
 
+
     return {
-        onPress: function(oEvent) {
+        onPress: async function (oEvent) {
             MessageToast.show("Custom handler invoked.");
             debugger
             var cdialog = new sap.m.Dialog({
                 title: "Comments",
                 endButton: new sap.m.Button({
                     text: "Close",
-                    press: async function() {
+                    press: async function () {
                         cdialog.close();
                     },
                     layoutData: new sap.m.FlexItemData({
@@ -22,7 +23,7 @@ sap.ui.define([
                 })
             });
             cdialog.addContent(new sap.m.VBox({
-                width:"60vw"
+                width: "60vw"
             }));
 
             function generateUniqueId() {
@@ -38,16 +39,36 @@ sap.ui.define([
                 return uniqueId;
             }
             debugger
-            var oTimelineItem = new sap.suite.ui.commons.TimelineItem(("thisuniqid1"+generateUniqueId()),{
+            var path = window.location.href;
+            const parts = path.split("'");
+
+            // Find the index of the substring "reimbursmentId="
+            const index = parts.findIndex(part => part.includes("reimbursmentId="));
+            const number = parts[index + 1];
+            var funcname = "getcallcomment";
+            let oFunc = sap.ui.getCore().byId('app1::reimbursementheaderObjectPage--fe::Form::GeneratedFacet1::Content').getModel().bindContext(`/${funcname}(...)`);
+            oFunc.setParameter('reimid', number);
+            await oFunc.execute();
+            let context = oFunc.getBoundContext();
+            let getdata = context.getValue();
+            let result = getdata.value;
+            result = JSON.parse(result);
+            var i1 = result.length;
+            // var len = commentshistory.length;
+            for (var i = 0; i < result.length; i++){
+            var oTimelineItem = new sap.suite.ui.commons.TimelineItem(("thisuniqid1" + generateUniqueId()), {
                 dateTime: "12/3/34",
                 // title: "demo title1",
                 userNameClickable: false,
                 // userNameClicked: "onUserNameClick",
                 // select: "onPressItems",
                 // userPicture: "Photo",
-                text: 'comment1',
-                userName: "Comments"
+                text: result[i].textArea,
+                // userName: "Comments"
+            
             });
+            cdialog.addContent(oTimelineItem);
+        }
             // var oTimelineItem1 = new sap.suite.ui.commons.TimelineItem(("thisuniqid2"+generateUniqueId()),{
             //     dateTime: "12/3/34",
             //     // title: "demo title1",
@@ -68,13 +89,13 @@ sap.ui.define([
             //     text: 'Demo Comment Tooling Agreement signed',
             //     userName: "Tooling Agreement signed"                
             // });
+
             
-            cdialog.addContent(oTimelineItem);
             // cdialog.addContent(oTimelineItem1);
             // cdialog.addContent(oTimelineItem2);
-    
+
             cdialog.open(); // Open the dialog
-debugger
+
         }
     };
 });

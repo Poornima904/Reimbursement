@@ -1,46 +1,68 @@
 {
-  "name": "reimburse",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^7",
-    "@sap/cds-hana": "^2",
-    "@sap/xsenv": "^4.2.0",
-    "@sap/xssec": "^3.6.1",
-    "ajax": "^0.0.4",
-    "axios": "^1.6.8",
-    "buffer": "^6.0.3",
-    "express": "^4",
-    "passport": "^0.7.0"
-  },
-  "devDependencies": {
-    "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "^7",
-    "@sap/ux-specification": "^1.120.6",
-    "rimraf": "^3.0.2"
-  },
-  "scripts": {
-    "start": "cds-serve",
-    "watch-app1": "cds watch --open app1/webapp/index.html?sap-ui-xx-viewCache=false",
-    "undeploy": "cf undeploy reimburse --delete-services --delete-service-keys --delete-service-brokers",
-    "build": "rimraf resources mta_archives && mbt build --mtar archive",
-    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false"
-  },
-  "cds": {
-    "requires": {
-      "db": "hana",
-      "auth":"dummy"
+    "name": "reimburse",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap-cloud-sdk/connectivity": "^3.13.0",
+        "@sap-cloud-sdk/http-client": "^3.13.0",
+        "@sap/cds": "^7",
+        "@sap/cds-hana": "^2",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.9.7",
+        "@sap/xsenv": "^4.2.0",
+        "@sap/xssec": "^3.6.1",
+        "ajax": "^0.0.4",
+        "axios": "^1.6.8",
+        "buffer": "^6.0.3",
+        "express": "^4",
+        "passport": "^0.7.0"
     },
-    "fiori": {
-      "bypass_draft": true
-    }
-  },
-  "sapux": [
-    "app/app1",
-    "app/app2approval"
-  ]
+    "devDependencies": {
+        "@cap-js/sqlite": "^1",
+        "@sap/cds-dk": "^7",
+        "@sap/ux-specification": "^1.120.8",
+        "rimraf": "^3.0.2"
+    },
+    "scripts": {
+        "start": "cds-serve",
+        "watch-app1": "cds watch --open app1/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy reimburse --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "cds": {
+        "requires": {
+            "db": "hana",
+            "auth": "dummy",
+            "destinations": true,
+      
+            "BPA_S": {
+                "kind": "odata-v2",
+                "csrf": true,
+                "csrfInBatch": true,
+                "credentials": {
+                    "destination": "BPA_DEST",
+                    "requestTimeout": 120000
+                },
+                "destinationOptions": {
+                    "selectionStrategy": "alwaysProvider",
+                    "jwt": null
+                }
+            },
+            "pool": {
+                "max": 500,
+                "min": 10
+            }
+        },
+        "fiori": {
+            "bypass_draft": true
+        }
+    },
+    "sapux": [
+        "app/app1",
+        "app/app2approval"
+    ]
 }
