@@ -6,12 +6,12 @@ sap.ui.define([
 
     return {
         onPress: async function (oEvent) {
-            MessageToast.show("Custom handler invoked.");
+           
             debugger
             var cdialog = new sap.m.Dialog({
                 title: "Comments",
                 endButton: new sap.m.Button({
-                    text: "Close",
+                    text: "Close",  
                     press: async function () {
                         cdialog.close();
                     },

@@ -7,24 +7,29 @@
             <!-- <Button core:require="{ handler: 'app2approval/ext/fragment/Workflow'}" text="Comments" press="handler.onPress" id="b2" icon="sap-icon://comment" /> -->
         </HBox>
       
-        <Title text="Level1" id="title1"/>
+        <Title text="Level" id="title1"/>
         <!-- <Button core:require="{ handler: 'headscm2/ext/fragment/Worflow_History'}" text="Workflow History" press="handler.onPress" id="b1" visible="false"/> -->
-        <ScrollContainer id="scrollContainer" height="280px" width="100%">
+        <ScrollContainer id="scrollContainer" vertical="true"  width="100%">
             <Table id="table" items="{
-								path: '/workflow' 
+								path: 'headItem4' 
                                 }" >
                 <columns>
-                    <Column id="c2" width="11rem" styleClass="colClass">
-                        <Text text="Level" id="t2" width="11rem"/>
+                    <Column id="c2" width="5rem" styleClass="colClass">
+                        <Text text="Level" id="t2" width="5rem"/>
                     </Column>
-                    <Column id="c3" width="11rem" styleClass="colClass">
-                        <Text text="workFlowId" id="t3" width="11rem"/>
-                    </Column>
-                    <Column id="c4" width="11rem" styleClass="colClass">
+                   
+                    <Column id="c4" width="5rem" styleClass="colClass">
                         <Text text="Begin Date" id="t4"/>
                     </Column>
-                    <Column id="c5" width="11rem" styleClass="colClass">
+                    <Column id="c5" width="5rem" styleClass="colClass">
                         <Text text="End Date" id="t5"/>
+                    </Column>
+                    
+                    <Column id="c9" width="5rem" styleClass="colClass">
+                        <Text text="DaysTaken" id="t09"/>
+                    </Column>
+                     <Column id="c3" width="5rem" styleClass="colClass">
+                        <Text text="status" id="t3" width="5rem"/>
                     </Column>
                     <Column id="c6" width="11rem" styleClass="colClass">
                         <Text text="Approvers" id="t6"/>
@@ -33,16 +38,19 @@
                         <Text text="Approved By" id="t06"/>
                     </Column>
                     
+                    
                 </columns>
                 <items>
                     <ColumnListItem id="cli1">
                         <cells>
-                            <Text text="{path: 'level', formatter: '.formatLevel'}" id="t7"/>
-                            <Text text="{workFlowId}" id="t8"/>
-                            <Text text="{BeginDate}" id="t9"/>
-                            <Text text="{EndDate}" id="t10"/>
-                            <Text text="{Users}" id="t11"/>
-                            <Text text="{Approved By}" id="t12"/>
+                            <Text text="{path: 'level', formatter: '.formatLevel'}" id="t7" />                          
+                            <Text text="{path:'BeginDate'}" id="t9" />
+                            <Text text="{path:'EndDate'}" id="t10" />
+                             <Text text="{DaysTaken}" id="t13" />
+                              <Text text="{status}" id="t8" />
+                                <Text text="{Users}" id="t11" />
+                            <Text text="{ApprovedBy}" id="t12" />
+                           
                             
                         </cells>
                     </ColumnListItem>

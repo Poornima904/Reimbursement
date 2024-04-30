@@ -7,6 +7,7 @@ sap.ui.define([
             MessageToast.show("Custom handler invoked.");
         },
         formatLevel: function(level) {
+            
                 return parseInt(level); // Convert to integer
             
         }

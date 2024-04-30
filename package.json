@@ -16,6 +16,7 @@
         "ajax": "^0.0.4",
         "axios": "^1.6.8",
         "buffer": "^6.0.3",
+        "dayjs": "^1.11.10",
         "express": "^4",
         "passport": "^0.7.0"
     },
@@ -31,20 +32,20 @@
         "undeploy": "cf undeploy reimburse --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
         "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-        "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false"
+        "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-dataentries": "cds watch --open dataentries/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "requires": {
             "db": "hana",
             "auth": "dummy",
             "destinations": true,
-      
             "BPA_S": {
                 "kind": "odata-v2",
                 "csrf": true,
                 "csrfInBatch": true,
                 "credentials": {
-                    "destination": "BPA_DEST",
+                    "destination": "BPA_S",
                     "requestTimeout": 120000
                 },
                 "destinationOptions": {
@@ -63,6 +64,7 @@
     },
     "sapux": [
         "app/app1",
-        "app/app2approval"
+        "app/app2approval",
+        "app/dataentries"
     ]
 }

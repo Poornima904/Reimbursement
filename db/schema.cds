@@ -13,8 +13,8 @@ entity reimbursementtype{
 }
 // @cds.persistence.journal
 entity reimbursementWorkflow{
-    key level : String;
-    key Approvers : String;
+    key level : String @UI.Placeholder : 'Enter level ex: 1.0';
+    key Approvers : String @UI.Placeholder : 'Enter Gmail';
 }
 
 
@@ -27,7 +27,7 @@ entity reimbursementheader {
         status_dis        : String;
         status_val        : Integer;
         submittedBy       : String;
-        submissionDate    : DateTime;
+        submissionDate    : String;
         status            : String default 'New';
         headItem1         : Composition of many reimbursementitem
                                 on headItem1.item1 = $self;
@@ -44,7 +44,8 @@ entity reimbursementitem {
     key item                  : String;
         reimbursmentType      : String;
         reimbursmentDate      : Date;
-        amountToBeReimbursed  : Decimal(10, 2);
+        amountToBeReimbursed  : Decimal(10, 2) ;
+        // amountToBeReimbursed  : Decimal(10, 2) @assert.range: [ 0, amountEligibleToClaim ];
         amountEligibleToClaim : Decimal(10, 2);
         item1                 : Association to one reimbursementheader
                                     on item1.reimbursmentId = reimbursmentId;
@@ -72,7 +73,7 @@ entity comment {
                              on comment1.reimbursmentId = reimbursmentId;
 }
 // @cds.persistence.journal
-entity workflow {
+entity workflow : managed{
     key workFlowId     : UUID;
      reimbursmentId : String;
         level : String;

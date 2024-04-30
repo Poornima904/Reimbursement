@@ -31,6 +31,31 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 				onAfterActionExecution:function(){
 					debugger
 				},
+				// onBeforeCreate:function(oEvent){
+				// 	debugger;
+					
+				// },
+				onAfterCreate: async function(oEvent){
+					debugger;
+
+					// 	var path1 = window.location.href;
+					// var regex = /reimbursmentId='(\d+)'/;
+					// var match = path1.match(regex);
+					// var key = match[1];
+
+					// // runs only once when the status is ne
+
+					
+
+							
+					// 	// debugger  
+					// let oFunc =  this.getView().getModel().bindContext("/afterload(...)");
+					// oFunc.setParameter('paramid', key);
+					// await oFunc.execute();
+
+					
+					
+				}
 			}
 		}
 	});
